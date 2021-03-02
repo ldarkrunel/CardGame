@@ -6,6 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "Interact.generated.h"
 
+class UInputComponent;
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CARDGAME_API UInteract : public UActorComponent
@@ -15,12 +17,11 @@ class CARDGAME_API UInteract : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UInteract();
+	void SetUpInputComponent(UInputComponent* PlayerInputComponent);
 
 private:
-	UInputComponent* InputComponent;
-
 	void PerformRayCastFromMouse();
-	void SetUpInputComponent();
+
 
 protected:
 	// Called when the game starts

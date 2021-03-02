@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "Components/InputComponent.h"
+
 #include "Interact.h"
 
 // Sets default values for this component's properties
@@ -12,13 +14,10 @@ UInteract::UInteract()
 
 }
 
-
 // Called when the game starts
 void UInteract::BeginPlay()
 {
 	Super::BeginPlay();
-	SetUpInputComponent();
-
 }
 
 
@@ -28,17 +27,17 @@ void UInteract::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
 
-void UInteract::SetUpInputComponent()
+void UInteract::SetUpInputComponent(UInputComponent* PlayerInputComponent)
 {
-	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
-	if (InputComponent) {
-		UE_LOG(LogTemp, Error, TEXT("Input comonent found on: %s"), *GetOwner()->GetName());
-		InputComponent->BindAction("LeftClick", IE_Pressed, this, &UInteract::PerformRayCastFromMouse);
+	UE_LOG(LogTemp, Warning, TEXT("is it getting here?"));
+	if (PlayerInputComponent) {
+		UE_LOG(LogTemp, Error, TEXT("Input component found on: %s"), *GetOwner()->GetName());
+		PlayerInputComponent->BindAction("LeftClick", IE_Pressed, this, &UInteract::PerformRayCastFromMouse);
 	}
 }
 
 void UInteract::PerformRayCastFromMouse()
 {
-
+	UE_LOG(LogTemp, Warning, TEXT("clicking?"));
 }
 
